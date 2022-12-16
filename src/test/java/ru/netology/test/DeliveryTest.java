@@ -2,7 +2,6 @@ package ru.netology.test;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.Keys;
 import ru.netology.data.DataGenerator;
@@ -14,10 +13,6 @@ import static org.openqa.selenium.Keys.BACK_SPACE;
 
 class DeliveryTest {
 
-    @BeforeAll
-    static void setUpAll() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
-    }
 
     @AfterAll
     static void tearDownAll() {
@@ -52,5 +47,8 @@ class DeliveryTest {
         $("[data-test-id='success-notification']").shouldBe(Condition.visible, Duration.ofSeconds(10));
         $x("//span[contains(text(), 'Перепланировать')]").click();
         $("[data-test-id='success-notification']").shouldHave(Condition.exactText("Успешно! Встреча успешно запланирована на " + secondMeetingDate), Duration.ofSeconds(10));
+    }
+    @BeforeAll
+    static void setUpBeforeAll() {
     }
 }
